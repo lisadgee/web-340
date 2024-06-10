@@ -1,0 +1,12 @@
+{
+  "name": "cooking-app",
+  "version": "1.0.0",
+  "description": "Node - week 2 Problem",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tester.js",
+    "start": "node index.js"
+  },
+  "author": "Lisa Gee",
+  "license": "ISC"
+}
