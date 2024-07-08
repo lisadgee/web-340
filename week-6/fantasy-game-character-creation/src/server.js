@@ -5,8 +5,34 @@ const url = require('url');
 
 const server = http.createServer((req, res) => {
   // TODO: Implement your routes here
-});
+  // http header
+  res.writeHead(200, { 'Content-Type': 'text/html' });
 
+  const parsedUrl = url.parse(req.url, true)
+  const query = parsedUrl.query;
+
+  //const url = req.url;
+  //Route for creating character
+  if (parsedUrl.pathname === '/create' && req.method === 'POST') {
+    res.write('Fantasy character has been created');
+    res.end();
+  }
+  //Route for confirming character
+  else if (parsedUrl.pathname === '/confirm' && req.method === 'POST') {
+    res.write('Character has been confirmed');
+    res.end();
+  }
+  //Route for viewing character
+  else if (parsedUrl.pathname === '/view' && req.method === 'GET') {
+    res.write('Details for the character');
+    res.end();
+  }
+  else {
+    res.write('Hello World!');
+    res.end();
+  }
+});
+//Start server on port 3000
 server.listen(3000, () => {
   console.log('Server listening on port 3000');
 });
