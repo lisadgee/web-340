@@ -3,15 +3,30 @@ const { Duplex } = require('stream');
 class CharacterCreator extends Duplex {
   constructor(options) {
     super(options);
-    // TODO: Initialize your class here
+    // create a que for the stream
+    this.que = [];
   }
 
   _write(chunk, encoding, callback) {
-    // TODO: Implement your _write method here
+    // Implementation for writing data to the stream using push
+    const character = chunk.toString().trim();
+    if (!character) {
+      callback(new Error("Invalid data"));
+      return;
+    }
+
+    this.que.push(`The character detail is ${character}`);
+    callback();
+
   }
 
   _read(size) {
-    // TODO: Implement your _read method here
+    // Implementation for read using push and shifting the que
+    if (this.que.length) {
+      this.push(this.que.shift() + "\n");
+    } else {
+      this.push(null);
+    }
   }
 }
 
