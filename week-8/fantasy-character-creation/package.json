@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "src/character-creation.js"
   },
   "keywords": [],
   "author": "",

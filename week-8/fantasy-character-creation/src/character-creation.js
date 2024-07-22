@@ -15,17 +15,31 @@
  */
 
 // For callbacks:
-/*
+
 const fs = require('fs');
+const { join } = require("path");
+const CHARACTER_FILE = join(__dirname, "characters.txt");
 
 function createCharacter(character, callback) {
-  // TODO: Implement this function
+  // Implementation for writing characters to a file
+  const characterData = character.join("\n");
+  fs.writeFile(CHARACTER_FILE, characterData, (err) => {
+    callback(err);
+  })
 }
 
 function getCharacters(callback) {
-  // TODO: Implement this function
+  //Implementation for reading characters from a file
+  fs.readFile(CHARACTER_FILE, { encoding: "utf8" }, (err, data) => {
+    if (err) {
+      callback(err);
+    } else {
+      const characters = data.split("\n").filter(character=>character);
+      callback(null,characters);
+    }
+  });
 }
-*/
+
 
 // For promises:
 /*
@@ -42,5 +56,5 @@ async function getCharacters() {
 
 // Uncomment the appropriate exports depending on whether you're using callbacks or promises:
 
-// module.exports = { createCharacter, getCharacters }; // For callbacks
+module.exports = { createCharacter, getCharacters }; // For callbacks
 // module.exports = { createCharacter, getCharacters }; // For promises
